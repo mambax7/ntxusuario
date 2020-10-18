@@ -1056,13 +1056,13 @@ define("GEOIP_CORPORATE_SPEED", 3);
 
 class GeoIP
 {
-    var $flags;
-    var $filehandle;
-    var $memory_buffer;
-    var $databaseType;
-    var $databaseSegments;
-    var $record_length;
-    var $shmid;
+    public $flags;
+    public $filehandle;
+    public $memory_buffer;
+    public $databaseType;
+    public $databaseSegments;
+    public $record_length;
+    public $shmid;
 }
 
 function geoip_load_shared_mem($file)
