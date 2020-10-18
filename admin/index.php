@@ -69,11 +69,7 @@ function autoscript()
     redirect_header('index.php', 3, _ADM_ACTCORRECTA);
 }
 
-if (!isset($_POST['op'])) {
-    $op = isset($_GET['op']) ? $_GET['op'] : 'main';
-} else {
-    $op = $_POST['op'];
-}
+$op = $_POST['op'] ?? ($_GET['op'] ?? 'main');
 switch ($op) {
     case 'modconfig';
         $veravatar     = $_POST['veravatar'];
