@@ -15,7 +15,7 @@ function funcion_usuario($options)
     $onlineHandler = xoops_getHandler('online');
     // mt_srand((double)microtime() * 1000000);
     $block = [];
-    if (mt_rand(1, 100) < 11) {
+    if (random_int(1, 100) < 11) {
         $onlineHandler->gc(300);
     }
     if (is_object($xoopsUser)) {
