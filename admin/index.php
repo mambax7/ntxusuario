@@ -1,94 +1,121 @@
 <?php
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-require dirname(__DIR__, 3) . '/include/cp_header.php';
+/**
+ * @copyright    XOOPS Project https://xoops.org/
+ * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @package
+ * @author       XOOPS Development Team
+ */
 
-function ntxusuario()
-{
-    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    global $xoopsDB, $xoopsModule;
-    xoops_cp_header();
-    $sql    = 'SELECT options FROM ' . $xoopsDB->prefix('newblocks') . " WHERE dirname='ntxusuario'";
-    $result = $xoopsDB->query($sql);
-    [$resultado] = $xoopsDB->fetchRow($result);
-    $config = explode('|', $resultado);
-    echo '<h4>' . _ADMIN_TITULO . '</h4>';
+use Xmf\Module\Admin;
+use Xmf\Request;
+use Xmf\Yaml;
+use XoopsModules\Ntxusuario\{Common,
+    Forms,
+    Helper,
+    Utility,
+};
 
-    $form               = new XoopsThemeForm(_ADM_CONFIGURACION, 'addform', 'index.php');
-    $formavatar         = new  XoopsFormRadioYN  (_ADM_VERAVATAR, 'veravatar', $config[0], _ADM_SI, _ADM_NO);
-    $formconectados     = new  XoopsFormRadioYN  (_ADM_VERUSUARIOSCON, 'verconectados', $config[1], _ADM_SI, _ADM_NO);
-    $formpopup          = new  XoopsFormRadioYN  (_ADM_POPUP, 'verpopup', $config[2], _ADM_SI, _ADM_NO);
-    $formstats          = new XoopsFormRadioYN (_ADM_ESTADISTICAREGISTROS, 'statreg', $config[6], _ADM_SI, _ADM_NO);
-    $formultimousuario  = new  XoopsFormRadioYN  (_ADM_ULTUSUARIO, 'ultimousuario', $config[3], _ADM_SI, _ADM_NO);
-    $formultimocantidad = new XoopsFormText(_ADM_ULTCANTIDAD, 'cantidad', 3, 10, $config[4]);
-    $formnewbb          = new  XoopsFormRadioYN  (_ADM_NEWBB, 'vernewbb', $config[5], _ADM_SI, _ADM_NO);
-    $op_hidden          = new XoopsFormHidden('op', 'modconfig');
-    $submit_button      = new XoopsFormButton('', 'submir', _ADM_ENVIAR, 'submit');
-    $form->addElement($formavatar);
-    $form->addElement($formconectados);
-    $form->addElement($formpopup);
-    $form->addElement($formstats);
-    $form->addElement($formultimousuario);
-    $form->addElement($formultimocantidad);
-    $form->addElement($formnewbb);
-    $form->addElement($op_hidden);
-    $form->addElement($submit_button);
-    $form->display();
-    echo '<br>';
-    echo '<br>';
-    $form          = new XoopsThemeForm(_ADM_CONFIGURACION, 'addform2', 'index.php');
-    $op_hidden     = new XoopsFormHidden('op', 'autoscript');
-    $submit_button = new XoopsFormButton(_ADM_SCRIPTAUTOMATICO, 'submir2', _ADM_ENVIAR, 'submit');
-    $form->addElement($op_hidden);
-    $form->addElement($submit_button);
-    $form->display();
-    xoops_cp_footer();
+/** @var Admin $adminObject */
+/** @var Helper $helper */
+/** @var Utility $utility */
+
+require_once __DIR__ . '/admin_header.php';
+xoops_loadLanguage('admin');
+xoops_cp_header();
+$adminObject = \Xmf\Module\Admin::getInstance();
+
+//check or upload folders
+//$configurator = new Common\Configurator();
+//foreach (array_keys($configurator->uploadFolders) as $i) {
+//    $utility::createFolder($configurator->uploadFolders[$i]);
+//    $adminObject->addConfigBoxLine($configurator->uploadFolders[$i], 'folder');
+//}
+
+$adminObject->displayNavigation(basename(__FILE__));
+
+//check for latest release
+//$newRelease = $utility->checkVerModule($helper);
+//if (!empty($newRelease)) {
+//    $adminObject->addItemButton($newRelease[0], $newRelease[1], 'download', 'style="color : Red"');
+//}
+
+//------------- Test Data ----------------------------
+
+if ($helper->getConfig('displaySampleButton')) {
+    $yamlFile            = dirname(__DIR__) . '/config/admin.yml';
+    $config              = loadAdminConfig($yamlFile);
+    $displaySampleButton = $config['displaySampleButton'];
+
+    if (1 == $displaySampleButton) {
+        xoops_loadLanguage('admin/modulesadmin', 'system');
+        require_once dirname(__DIR__) . '/testdata/index.php';
+
+        $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
+        $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
+        //    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
+        $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'HIDE_SAMPLEDATA_BUTTONS'), '?op=hide_buttons', 'delete');
+    } else {
+        $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLEDATA_BUTTONS'), '?op=show_buttons', 'add');
+        $displaySampleButton = $config['displaySampleButton'];
+    }
+    $adminObject->displayButton('left', '');
 }
 
-function actualizaDB()
+//------------- End Test Data ----------------------------
+
+$adminObject->displayIndex();
+
+/**
+ * @param $yamlFile
+ * @return array|bool
+ */
+function loadAdminConfig($yamlFile)
 {
-    global $xoopsDB, $xoopsModule, $veravatar, $verconectados, $verpopup, $ultimousuario, $cantidad, $vernewbb, $statreg;
-    $config = $veravatar . '|' . $verconectados . '|' . $verpopup . '|' . $ultimousuario . '|' . $cantidad . '|' . $vernewbb . '|' . $statreg;
-    $sql    = 'UPDATE ' . $xoopsDB->prefix('newblocks') . ' SET options=' . $xoopsDB->quoteString($config) . " WHERE dirname='ntxusuario'";
-    $xoopsDB->query($sql);
-    redirect_header('index.php', 3, _ADM_ACTCORRECTA);
+    $config = Yaml::readWrapped($yamlFile); // work with phpmyadmin YAML dumps
+    return $config;
 }
 
-function autoscript()
+/**
+ * @param $yamlFile
+ */
+function hideButtons($yamlFile)
 {
-    global $xoopsDB, $xoopsModule;
-    $sql    = 'SELECT bid FROM ' . $xoopsDB->prefix('newblocks') . " WHERE dirname='ntxusuario'";
-    $result = $xoopsDB->query($sql);
-    [$resultado] = $xoopsDB->fetchRow($result);
-    $blockid = $resultado;
-    $sql     = 'UPDATE ' . $xoopsDB->prefix('newblocks') . " SET visible=1 WHERE dirname='ntxusuario'";
-    $xoopsDB->query($sql);
-    $sql = 'UPDATE ' . $xoopsDB->prefix('block_module_link') . " SET module_id='0' WHERE block_id=" . $blockid . '';
-    $xoopsDB->query($sql);
-    $sql = 'INSERT INTO ' . $xoopsDB->prefix('group_permission') . " (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES ('3', " . $blockid . ", '1','block_read')";
-    $xoopsDB->query($sql);
-    redirect_header('index.php', 3, _ADM_ACTCORRECTA);
+    $app['displaySampleButton'] = 0;
+    Yaml::save($app, $yamlFile);
+    redirect_header('index.php', 0, '');
 }
 
-$op = $_POST['op'] ?? ($_GET['op'] ?? 'main');
+/**
+ * @param $yamlFile
+ */
+function showButtons($yamlFile)
+{
+    $app['displaySampleButton'] = 1;
+    Yaml::save($app, $yamlFile);
+    redirect_header('index.php', 0, '');
+}
+
+$op = Request::getString('op', 0, 'GET');
+
 switch ($op) {
-    case 'modconfig';
-        $veravatar     = $_POST['veravatar'];
-        $verconectados = $_POST['verconectados'];
-        $verpopup      = $_POST['verpopup'];
-        $ultimousuario = $_POST['ultimousuario'];
-        $cantidad      = $_POST['cantidad'];
-        $vernewbb      = $_POST['vernewbb'];
-        $statreg       = $_POST['statreg'];
-        actualizaDB();
+    case 'hide_buttons':
+        hideButtons($yamlFile);
         break;
-    case 'autoscript';
-        autoscript();
-        break;
-    case 'main':
-        ntxusuario();
-        break;
-    default:
-        ntxusuario();
+    case 'show_buttons':
+        showButtons($yamlFile);
         break;
 }
 
+echo $utility::getServerStats();
+
+require __DIR__ . '/admin_footer.php';

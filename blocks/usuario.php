@@ -1,5 +1,12 @@
 <?php
 
+use XoopsModules\Newbb;
+use XoopsModules\Ntxusuario\{Constants,
+    Helper
+};
+
+/** @var Helper $helper */
+
 /**
  * @param $options
  * @return array|false
@@ -7,6 +14,14 @@
 function funcion_usuario($options)
 {
     global $xoopsUser, $xoopsModule, $xoopsConfig, $xoopsDB;
+
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+
+    $helper = Helper::getInstance();
+    $helper->loadLanguage('admin');
+
     $sql    = 'SELECT options FROM ' . $xoopsDB->prefix('newblocks') . " WHERE dirname='ntxusuario'";
     $result = $xoopsDB->query($sql);
     [$resultado] = $xoopsDB->fetchRow($result);
@@ -20,7 +35,7 @@ function funcion_usuario($options)
     }
     if (is_object($xoopsUser)) {
         $pmHandler = xoops_getHandler('privmessage');
-        $criteria   = new CriteriaCompo(new Criteria('read_msg', 0));
+        $criteria  = new CriteriaCompo(new Criteria('read_msg', 0));
         $criteria->add(new Criteria('to_userid', $xoopsUser->getVar('uid')));
         $nuevosmensajes                = $pmHandler->getCount($criteria);
         $uid                           = $xoopsUser->getVar('uid');
@@ -64,9 +79,9 @@ function funcion_usuario($options)
     } else {
         $onlineHandler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
     }
-    $onlines        =& $onlineHandler->getAll();
+    $onlines       = $onlineHandler->getAll();
     $moduleHandler = xoops_getHandler('module');
-    $modules        = $moduleHandler->getList(new Criteria('isactive', 1));
+    $modules       = $moduleHandler->getList(new Criteria('isactive', 1));
     if (false !== $onlines) {
         $total       = count($onlines);
         $invitados   = 0;
@@ -119,7 +134,7 @@ function funcion_usuario($options)
         }
         geoip_close($gi);
 
-        $memberHandler        = xoops_getHandler('member');
+        $memberHandler         = xoops_getHandler('member');
         $hari_ini              = formatTimestamp(time());
         $usuarios_registrados  = $memberHandler->getUserCount(new Criteria('level', 0, '>'));
         $registrados_hoy       = $memberHandler->getUserCount(new Criteria('user_regdate', mktime(0, 0, 0), '>='));
