@@ -167,9 +167,9 @@ function funcion_usuario($options)
         $block['ultimo']              = $ultimo_registrado;
 
         return $block;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 

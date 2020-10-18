@@ -1118,9 +1118,9 @@ function _setup_segments($gi)
                     }
                 }
                 break;
-            } else {
-                $offset -= 4;
             }
+
+            $offset -= 4;
         }
         if ((GEOIP_COUNTRY_EDITION == $gi->databaseType) | (GEOIP_PROXY_EDITION == $gi->databaseType) | (GEOIP_NETSPEED_EDITION == $gi->databaseType)) {
             $gi->databaseSegments = GEOIP_COUNTRY_BEGIN;
@@ -1151,9 +1151,9 @@ function _setup_segments($gi)
                     }
                 }
                 break;
-            } else {
-                fseek($gi->filehandle, -4, SEEK_CUR);
             }
+
+            fseek($gi->filehandle, -4, SEEK_CUR);
         }
         if ((GEOIP_COUNTRY_EDITION == $gi->databaseType) | (GEOIP_PROXY_EDITION == $gi->databaseType) | (GEOIP_NETSPEED_EDITION == $gi->databaseType)) {
             $gi->databaseSegments = GEOIP_COUNTRY_BEGIN;
@@ -1320,7 +1320,9 @@ function _get_region($gi, $ipnum)
             $region       = '';
         }
         return [$country_code, $region];
-    } elseif (GEOIP_REGION_EDITION_REV1 == $gi->databaseType) {
+    }
+
+    if (GEOIP_REGION_EDITION_REV1 == $gi->databaseType) {
         $seek_region = _geoip_seek_country($gi, $ipnum) - GEOIP_STATE_BEGIN_REV1;
         //print $seek_region;
         if ($seek_region < US_OFFSET) {
