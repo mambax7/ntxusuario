@@ -25,6 +25,6 @@ $modversion['blocks'][1]['name']        = _MD_BL_NOMBRE;
 $modversion['blocks'][1]['description'] = _MD_BL_DESCRIPCION;
 $modversion['blocks'][1]['show_func']   = "funcion_usuario";
 $modversion['blocks'][1]['options']     = "1|1|1|1|10|0|0";
-$modversion['blocks'][1]['template']    = 'ntxusuario.html';
+$modversion['blocks'][1]['template']    = 'ntxusuario.tpl';
 
 ?>
