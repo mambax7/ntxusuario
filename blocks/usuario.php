@@ -87,7 +87,7 @@ function funcion_usuario($options)
         $invitados   = 0;
         $miembros    = '';
         $invitadosip = '';
-        require XOOPS_ROOT_PATH . '/modules/ntxusuario/include/geoip.inc';
+        require XOOPS_ROOT_PATH . '/modules/ntxusuario/class/geoip.php';
         $gi = geoip_open(XOOPS_ROOT_PATH . '/modules/ntxusuario/include/GeoIP.dat', GEOIP_STANDARD);
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
