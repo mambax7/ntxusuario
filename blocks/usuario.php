@@ -137,7 +137,7 @@ function funcion_usuario($options)
         }
 
         $miembros .= $invitadosip;
-        if ($xoopsConfig['use_ssl'] == 1 && $xoopsConfig['sslloginlink'] != '') {
+        if (1 == $xoopsConfig['use_ssl'] && '' != $xoopsConfig['sslloginlink']) {
             $block['sslloginlink'] = "<a href=\"javascript:openWithSelfMain('" . $xoopsConfig['sslloginlink'] . "', 'ssllogin', 300, 200);\">" . _MB_SYSTEM_SECURE . '</a>';
         }
         $block['idioma_bienvenido']   = _BIENVENIDO;
