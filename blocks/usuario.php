@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @param $options
+ * @return array|false
+ */
 function funcion_usuario($options)
 {
     global $xoopsUser, $xoopsModule, $xoopsConfig, $xoopsDB;
