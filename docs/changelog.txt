@@ -6,5 +6,6 @@
 - PHP7, PHP8 adjustments (mamba)
 
 
-<h5>1.0 RC-2   [WORK IN PROGRESS - NOT RELEASED]</h5>
+<h5>1.0 RC-2   [2009-04-27]</h5>
 <hr>
+- original release
