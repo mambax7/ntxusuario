@@ -7,10 +7,10 @@
 function funcion_usuario($options)
 {
     global $xoopsUser, $xoopsModule, $xoopsConfig, $xoopsDB;
-    $sql    = "SELECT options FROM " . $xoopsDB->prefix("newblocks") . " WHERE dirname='ntxusuario'";
+    $sql    = 'SELECT options FROM ' . $xoopsDB->prefix('newblocks') . " WHERE dirname='ntxusuario'";
     $result = $xoopsDB->query($sql);
     [$resultado] = $xoopsDB->fetchRow($result);
-    $config = explode("|", $resultado);
+    $config = explode('|', $resultado);
 
     $onlineHandler = xoops_getHandler('online');
     // mt_srand((double)microtime() * 1000000);
@@ -55,7 +55,7 @@ function funcion_usuario($options)
         $block['idioma_nombre']     = _NOMBRE;
         $block['idioma_entrar']     = _ENTRAR;
         $block['idioma_recuerdame'] = _RECUERDAME;
-        $block['idioma_registro']   = "<a href=\"" . XOOPS_URL . "/register.php\" title=\"" . _REGISTRATECOM . "\">" . _REGISTRATE . "</a>";
+        $block['idioma_registro']   = '<a href="' . XOOPS_URL . '/register.php" title="' . _REGISTRATECOM . '">' . _REGISTRATE . '</a>';
         $block['recuperarpass']     = $recuperarpass;
     }
 
@@ -73,13 +73,13 @@ function funcion_usuario($options)
         $miembros    = '';
         $invitadosip = '';
         require XOOPS_ROOT_PATH . '/modules/ntxusuario/include/geoip.inc';
-        $gi = geoip_open(XOOPS_ROOT_PATH . "/modules/ntxusuario/include/GeoIP.dat", GEOIP_STANDARD);
+        $gi = geoip_open(XOOPS_ROOT_PATH . '/modules/ntxusuario/include/GeoIP.dat', GEOIP_STANDARD);
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
                 $bandera = geoip_country_code_by_addr($gi, $onlines[$i]['online_ip']);
                 $bandera = strtolower($bandera);
                 if (!$bandera) {
-                    $bandera = "online";
+                    $bandera = 'online';
                 }
                 $onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
                 $miembros                  .= '<tr><td><img src="'
@@ -99,7 +99,7 @@ function funcion_usuario($options)
                 $bandera = geoip_country_code_by_addr($gi, $onlines[$i]['online_ip']);
                 $bandera = strtolower($bandera);
                 if (!$bandera) {
-                    $bandera = "online";
+                    $bandera = 'online';
                 }
                 $onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
                 if ($xoopsUser) {
@@ -138,7 +138,7 @@ function funcion_usuario($options)
 
         $miembros .= $invitadosip;
         if ($xoopsConfig['use_ssl'] == 1 && $xoopsConfig['sslloginlink'] != '') {
-            $block['sslloginlink'] = "<a href=\"javascript:openWithSelfMain('" . $xoopsConfig['sslloginlink'] . "', 'ssllogin', 300, 200);\">" . _MB_SYSTEM_SECURE . "</a>";
+            $block['sslloginlink'] = "<a href=\"javascript:openWithSelfMain('" . $xoopsConfig['sslloginlink'] . "', 'ssllogin', 300, 200);\">" . _MB_SYSTEM_SECURE . '</a>';
         }
         $block['idioma_bienvenido']   = _BIENVENIDO;
         $block['idioma_conectados']   = _CONECTADOS;
