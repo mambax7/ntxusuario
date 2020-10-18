@@ -130,10 +130,9 @@ function funcion_usuario($options)
         $criteria->setLimit($config[4]);
         $nuevosmiemb       = $memberHandler->getUsers($criteria);
         $ultimo_registrado = $nuevosmiemb[0]->getVar('uname');
-        $count             = count($nuevosmiemb);
         $nuevosmiembros    = '<b>' . _NUEVOSMIEMBROS . ':</b> ';
-        for ($i = 0; $i < $count; $i++) {
-            $nuevosmiembros .= '<small>[<span style="text-transform: uppercase">' . $nuevosmiemb[$i]->getVar('uname') . '</span>-<i>' . formatTimestamp($nuevosmiemb[$i]->getVar('user_regdate'), 's') . '</i></small>] ';
+        foreach ($nuevosmiemb as $iValue) {
+            $nuevosmiembros .= '<small>[<span style="text-transform: uppercase">' . $iValue->getVar('uname') . '</span>-<i>' . formatTimestamp($iValue->getVar('user_regdate'), 's') . '</i></small>] ';
         }
 
         $miembros .= $invitadosip;
