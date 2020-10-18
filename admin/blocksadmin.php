@@ -61,6 +61,10 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         $moduleDirName      = basename(dirname(__DIR__));
         $moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
         $db                 = \XoopsDatabaseFactory::getDatabaseConnection();
+
+        $adminObject = Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
+
         xoops_loadLanguage('admin', 'system');
         xoops_loadLanguage('admin/blocksadmin', 'system');
         xoops_loadLanguage('admin/groups', 'system');
