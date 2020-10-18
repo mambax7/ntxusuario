@@ -1,4 +1,4 @@
-<?
+<?php
 
 function funcion_usuario($options)
 {
