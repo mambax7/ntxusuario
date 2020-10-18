@@ -29,4 +29,4 @@ define("_TIP_FOROS", "Temas sin leer del foro ¡Accédelo!");
 define("_TIP_NOTIFICACIONES", "Activa/Desactiva las notificaciones del portal");
 define("_TIP_DESCONECTAR", "Cierra tu sesión y desconecta");
 define("_TIP_RECUPERAR_PASS", "Pulse aquí para recuperar su contraseña olvidada");
-?>
+

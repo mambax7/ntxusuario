@@ -14,4 +14,4 @@ define("_ADM_ACTCORRECTA", "Database updated successfully");
 define("_ADM_SCRIPTAUTOMATICO", "Autoinstallation (Block visible in all pages and all users)");
 define("_ADM_NEWBB", "Do you use newbb2 as forum module?");
 define("_ADM_ESTADISTICAREGISTROS", "Show register stats?");
-?>
+

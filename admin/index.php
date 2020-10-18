@@ -95,4 +95,4 @@ switch ($op) {
         ntxusuario();
         break;
 }
-?>
+

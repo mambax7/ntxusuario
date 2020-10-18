@@ -29,4 +29,4 @@ define("_TIP_FOROS", "Active forum messages");
 define("_TIP_NOTIFICACIONES", "On/Off notifications");
 define("_TIP_DESCONECTAR", "Logout");
 define("_TIP_RECUPERAR_PASS", "Click here if you have forgot your password");
-?>
+

@@ -14,4 +14,4 @@ define("_ADM_ACTCORRECTA", "Datos actualizados correctamente");
 define("_ADM_SCRIPTAUTOMATICO", "Genera una autoinstalación (bloque visible para todos y en todas las páginas)");
 define("_ADM_NEWBB", "¿Utiliza newbb2 como sistema de foros?");
 define("_ADM_ESTADISTICAREGISTROS", "¿Desea mostrar estadística de registros?");
-?>
+
