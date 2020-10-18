@@ -11,7 +11,7 @@
                     <td align="center"><a href="http://localhost/edituser.php?op=avatarform" alt="<{$block.idioma_cambiaravatar}>"><img src="<{$xoops_url}>/uploads/<{$block.avatar_usuario}>"></a></td>
                     <{/if}>
                     <{else}>
-                    <td align="center"><img src="<{$xoops_url}>/modules/ntxusuario/images/ojos.gif"></td>
+                    <td align="center"><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/ojos.gif"></td>
                     <{/if}>
                 </tr>
                 <tr>
@@ -32,8 +32,8 @@
             <{if $xoops_isuser}>
             <table border="0" width="100%">
                 <tr>
-                    <td align="center" background="<{$xoops_url}>/modules/ntxusuario/images/fondo.gif">
-                        <img src="<{$xoops_url}>/modules/ntxusuario/images/opciones.gif"><font color="#000000"> <{$block.idioma_menuusuario}></td>
+                    <td align="center" background="<{$xoops_url}>/modules/ntxusuario/assets/images/fondo.gif">
+                        <img src="<{$xoops_url}>/modules/ntxusuario/assets/images/opciones.gif"><font color="#000000"> <{$block.idioma_menuusuario}></td>
                 </tr>
             </table>
             <table border="0" width="100%">
@@ -58,8 +58,8 @@
             <{else}>
             <table border="0" width="100%">
                 <tr>
-                    <td align="center" background="<{$xoops_url}>/modules/ntxusuario/images/fondo.gif">
-                        <img src="<{$xoops_url}>/modules/ntxusuario/images/registrar.gif"><font color="#000000"> <{$block.idioma_registro}></td>
+                    <td align="center" background="<{$xoops_url}>/modules/ntxusuario/assets/images/fondo.gif">
+                        <img src="<{$xoops_url}>/modules/ntxusuario/assets/images/registrar.gif"><font color="#000000"> <{$block.idioma_registro}></td>
                 </tr>
 
             </table>
@@ -88,23 +88,23 @@
 
                 <table border="0" width="100%">
                     <tr>
-                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/images/fondo.gif">
-                            <img src="<{$xoops_url}>/modules/ntxusuario/images/online.gif"><font color="#000000"> <{$block.idioma_online}></td>
+                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/assets/images/fondo.gif">
+                            <img src="<{$xoops_url}>/modules/ntxusuario/assets/images/online.gif"><font color="#000000"> <{$block.idioma_online}></td>
                     </tr>
                 </table>
                 <table border="0" width="100%">
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/conectados.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/conectados.gif"></td>
                         <td><b> <{$block.idioma_conectados}></b></td>
                         <td><b><{$block.online_total}></b></td>
                     </tr>
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/miembros.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/miembros.gif"></td>
                         <td> <{$block.idioma_miembros}></td>
                         <td><{$block.online_miembros}></td>
                     </tr>
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/invitados.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/invitados.gif"></td>
                         <td> <{$block.idioma_invitados}></td>
                         <td><{$block.online_invitados}></td>
                     </tr>
@@ -112,8 +112,8 @@
                 <{if $block.statsreg == 1}>
                 <table border="0" width="100%" id="table9">
                     <tr>
-                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/images/fondo.gif">
-                            <img src="<{$xoops_url}>/modules/ntxusuario/images/registrar.gif"><font color="#000000"> <{$block.idioma_estadisticas}></td>
+                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/assets/images/fondo.gif">
+                            <img src="<{$xoops_url}>/modules/ntxusuario/assets/images/registrar.gif"><font color="#000000"> <{$block.idioma_estadisticas}></td>
                     </tr>
                     <tr>
                         <{if $block.ultimousuario == 1}>
@@ -125,23 +125,23 @@
                 </table>
                 <table border="0" width="100%">
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/registrados.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/registrados.gif"></td>
                         <td><b> <{$block.idioma_registrados}></b></td>
                         <td><b><{$block.usuariosregistrados}></b></td>
                     </tr>
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/hoy.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/hoy.gif"></td>
                         <td> <{$block.idioma_hoy}></td>
                         <td><{$block.registradoshoy}></td>
                     </tr>
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/ayer.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/ayer.gif"></td>
                         <td> <{$block.idioma_ayer}></td>
                         <td><{$block.registradosayer}></td>
                     </tr>
                     <tr>
-                        <td><img src="<{$xoops_url}>/modules/ntxusuario/images/ultimo.gif"></td>
-                        <td><small><span style="text-transform: capitalize; font-weight:bold"> <{$block.ultimo}></span></small><img src="<{$xoops_url}>/modules/ntxusuario/images/nuevo.gif"></td>
+                        <td><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/ultimo.gif"></td>
+                        <td><small><span style="text-transform: capitalize; font-weight:bold"> <{$block.ultimo}></span></small><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/nuevo.gif"></td>
                         <td></td>
                     </tr>
                 </table>
@@ -149,8 +149,8 @@
                 <{if $block.verconectados == 1}>
                 <table border="0" width="100%">
                     <tr>
-                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/images/fondo.gif">
-                            <font color="#000000"><img src="<{$xoops_url}>/modules/ntxusuario/images/origen.gif"><{$block.idioma_conectados}></td>
+                        <td align="center" background="<{$xoops_url}>/modules/ntxusuario/assets/images/fondo.gif">
+                            <font color="#000000"><img src="<{$xoops_url}>/modules/ntxusuario/assets/images/origen.gif"><{$block.idioma_conectados}></td>
                     </tr>
                 </table>
                 <table border="0" width="100%">
@@ -180,8 +180,8 @@
                 var direccion1 = "<{$xoops_url}>" + "/viewpmsg.php";
                 var direccion2 = location.href;
                 if (!(direccion1 == direccion2)) {
-                    caja = new QBoxRes(13, 13, 13, 13, "<{$xoops_url}>/modules/ntxusuario/images/wtc.gif", "<{$xoops_url}>/modules/ntxusuario/images/wtr.gif", "<{$xoops_url}>/modules/ntxusuario/images/wmr.gif", "<{$xoops_url}>/modules/ntxusuario/images/wbr.gif", "<{$xoops_url}>/modules/ntxusuario/images/wbc.gif", "<{$xoops_url}>/modules/ntxusuario/images/wbl.gif", "<{$xoops_url}>/modules/ntxusuario/images/wml.gif", "<{$xoops_url}>/modules/ntxusuario/images/wtl.gif", "#FFE831", "<{$xoops_url}>/modules/ntxusuario/images/wbg.gif", QWndCtrl.FADEIN + QWndCtrl.HBARNOUT);
-                    boton = new QButtonRes(QButton.NORMAL, 46, 29, "<{$xoops_url}>/modules/ntxusuario/images/btn2n.gif", "<{$xoops_url}>/modules/ntxusuario/images/btn2p.gif");
+                    caja = new QBoxRes(13, 13, 13, 13, "<{$xoops_url}>/modules/ntxusuario/assets/images/wtc.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wtr.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wmr.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wbr.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wbc.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wbl.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wml.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/wtl.gif", "#FFE831", "<{$xoops_url}>/modules/ntxusuario/assets/images/wbg.gif", QWndCtrl.FADEIN + QWndCtrl.HBARNOUT);
+                    boton = new QButtonRes(QButton.NORMAL, 46, 29, "<{$xoops_url}>/modules/ntxusuario/assets/images/btn2n.gif", "<{$xoops_url}>/modules/ntxusuario/assets/images/btn2p.gif");
                     mb = new QMessageBox(null, "mb", caja, boton, "Test");
                     mb.alert('<{$block.idioma_nuevomensaje}>            ');
                 }

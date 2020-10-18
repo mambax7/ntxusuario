@@ -30,13 +30,13 @@ function funcion_usuario($options)
         $block['rangoimagen']          = $rangoclase['image'];
         $block['rangotitulo']          = $rangoclase['title'];
         $block['avatar_usuario']       = $xoopsUser->getVar('user_avatar');
-        $perfilusuario                 = '<a href="' . XOOPS_URL . '/user.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/perfil.gif" alt="' . _TIP_PERFIL . '"></a>';
-        $mensajesprivados              = '<a href="' . XOOPS_URL . '/viewpmsg.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/mensajes.gif" alt="' . _TIP_MENSAJES . '"></a>';
-        $nuevocorreo                   = '<a href="' . XOOPS_URL . '/viewpmsg.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/nuevocorreo.gif" alt="' . $nuevosmensajes . ' ' . _TIP_MENSAJESNUEVOS . '"></a>';
-        $administracion                = '<a href="' . XOOPS_URL . '/admin.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/administracion.gif" alt="' . _TIP_ADMIN . '"></a>';
-        $foros                         = '<a href="' . XOOPS_URL . '/modules/newbb"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/foros.gif" alt="' . _TIP_FOROS . '"></a>';
-        $notificaciones                = '<a href="' . XOOPS_URL . '/notifications.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/notificaciones.gif" alt="' . _TIP_NOTIFICACIONES . '"></a>';
-        $desconectar                   = '<a href="' . XOOPS_URL . '/user.php?op=logout"><img src="' . XOOPS_URL . '/modules/ntxusuario/images/desconectar.gif" alt="' . _TIP_DESCONECTAR . '"></a>';
+        $perfilusuario                 = '<a href="' . XOOPS_URL . '/user.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/perfil.gif" alt="' . _TIP_PERFIL . '"></a>';
+        $mensajesprivados              = '<a href="' . XOOPS_URL . '/viewpmsg.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/mensajes.gif" alt="' . _TIP_MENSAJES . '"></a>';
+        $nuevocorreo                   = '<a href="' . XOOPS_URL . '/viewpmsg.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/nuevocorreo.gif" alt="' . $nuevosmensajes . ' ' . _TIP_MENSAJESNUEVOS . '"></a>';
+        $administracion                = '<a href="' . XOOPS_URL . '/admin.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/administracion.gif" alt="' . _TIP_ADMIN . '"></a>';
+        $foros                         = '<a href="' . XOOPS_URL . '/modules/newbb"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/foros.gif" alt="' . _TIP_FOROS . '"></a>';
+        $notificaciones                = '<a href="' . XOOPS_URL . '/notifications.php"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/notificaciones.gif" alt="' . _TIP_NOTIFICACIONES . '"></a>';
+        $desconectar                   = '<a href="' . XOOPS_URL . '/user.php?op=logout"><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/desconectar.gif" alt="' . _TIP_DESCONECTAR . '"></a>';
         $block['idioma_cambiaravatar'] = _CAMBIAR_AVATAR;
         $block['perfilusuario']        = $perfilusuario;
         $block['mensajesprivados']     = $mensajesprivados;
@@ -84,7 +84,7 @@ function funcion_usuario($options)
                 $onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
                 $miembros                  .= '<tr><td><img src="'
                                               . XOOPS_URL
-                                              . '/modules/ntxusuario/images/banderas/'
+                                              . '/modules/ntxusuario/assets/images/banderas/'
                                               . $bandera
                                               . '.gif"></td><td><font size="1"><a href="'
                                               . XOOPS_URL
@@ -112,7 +112,7 @@ function funcion_usuario($options)
                     $direccionip = _INVITADO;
                 }
 
-                $invitadosip .= '<tr><td><img src="' . XOOPS_URL . '/modules/ntxusuario/images/banderas/' . $bandera . '.gif"></td><td><font size="1">' . $direccionip . '</a></td><td><font size="1">' . $onlineUsers[$i]['module'] . '</font></td></tr>';
+                $invitadosip .= '<tr><td><img src="' . XOOPS_URL . '/modules/ntxusuario/assets/images/banderas/' . $bandera . '.gif"></td><td><font size="1">' . $direccionip . '</a></td><td><font size="1">' . $onlineUsers[$i]['module'] . '</font></td></tr>';
 
                 $invitados++;
             }
