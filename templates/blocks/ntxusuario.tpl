@@ -163,7 +163,7 @@
             </table>
             <{if $block.nuevosmensajes > 0}>
                 <{if $block.verpopup == 1}>
-                    <script language="JavaScript" src="<{$xoops_url}>/modules/ntxusuario/include/ntxpopup.js"></script>
+                    <script language="JavaScript" src="<{$xoops_url}>/modules/ntxusuario/assets/js/ntxpopup.js"></script>
                     <style type="text/css"> DIV.qlabel {
                             font-size: 12pt;
                             font-weight: bold;
