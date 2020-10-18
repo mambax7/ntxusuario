@@ -1165,7 +1165,7 @@ function _setup_segments($gi)
 
 function geoip_open($filename, $flags)
 {
-    $gi        = new GeoIP;
+    $gi        = new GeoIP();
     $gi->flags = $flags;
 
     if ($gi->flags & GEOIP_SHARED_MEMORY) {
