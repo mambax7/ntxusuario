@@ -1,10 +1,10 @@
 <?php
 
-include '../../../include/cp_header.php';
+require dirname(__DIR__, 3) . '/include/cp_header.php';
 
 function ntxusuario()
 {
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     global $xoopsDB, $xoopsModule;
     xoops_cp_header();
     $sql    = "SELECT options FROM " . $xoopsDB->prefix("newblocks") . " WHERE dirname='ntxusuario'";
@@ -69,20 +69,20 @@ function autoscript()
     redirect_header("index.php", 3, _ADM_ACTCORRECTA);
 }
 
-if (!isset($HTTP_POST_VARS['op'])) {
-    $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : 'main';
+if (!isset($_POST['op'])) {
+    $op = isset($_GET['op']) ? $_GET['op'] : 'main';
 } else {
-    $op = $HTTP_POST_VARS['op'];
+    $op = $_POST['op'];
 }
 switch ($op) {
     case "modconfig";
-        $veravatar     = $HTTP_POST_VARS['veravatar'];
-        $verconectados = $HTTP_POST_VARS['verconectados'];
-        $verpopup      = $HTTP_POST_VARS['verpopup'];
-        $ultimousuario = $HTTP_POST_VARS['ultimousuario'];
-        $cantidad      = $HTTP_POST_VARS['cantidad'];
-        $vernewbb      = $HTTP_POST_VARS['vernewbb'];
-        $statreg       = $HTTP_POST_VARS['statreg'];
+        $veravatar     = $_POST['veravatar'];
+        $verconectados = $_POST['verconectados'];
+        $verpopup      = $_POST['verpopup'];
+        $ultimousuario = $_POST['ultimousuario'];
+        $cantidad      = $_POST['cantidad'];
+        $vernewbb      = $_POST['vernewbb'];
+        $statreg       = $_POST['statreg'];
         actualizaDB();
         break;
     case "autoscript";

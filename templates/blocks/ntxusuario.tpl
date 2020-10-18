@@ -69,12 +69,12 @@
 
                         <form action="<{$xoops_url}>/user.php" method="post">
                             <p align="center">
-                                <input type="text" name="uname" size="14" value="<{$block.idioma_nombre}>" onblur="if(this.value=='')this.value='<{$block.idioma_nombre}>';" onfocus="if(this.value=='<{$block.idioma_nombre}>')this.value='';" maxlength="60"/><br/>
-                                <input type="password" name="pass" size="14" value="<{$block.idioma_nombre}>" onblur="if(this.value=='')this.value='<{$block.idioma_nombre}>';" onfocus="if(this.value=='<{$block.idioma_nombre}>')this.value='';" maxlength="32"/><br/>
-                                <input type="checkbox" name="rememberme" value="On" class="formButton"/> <{$block.idioma_recuerdame}><br/>
-                                <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>"/>
-                                <input type="hidden" name="op" value="login"/>
-                                <input type="submit" value="<{$block.idioma_entrar}>"/>
+                                <input type="text" name="uname" size="14" value="<{$block.idioma_nombre}>" onblur="if(this.value=='')this.value='<{$block.idioma_nombre}>';" onfocus="if(this.value=='<{$block.idioma_nombre}>')this.value='';" maxlength="60"><br>
+                                <input type="password" name="pass" size="14" value="<{$block.idioma_nombre}>" onblur="if(this.value=='')this.value='<{$block.idioma_nombre}>';" onfocus="if(this.value=='<{$block.idioma_nombre}>')this.value='';" maxlength="32"><br>
+                                <input type="checkbox" name="rememberme" value="On" class="formButton"> <{$block.idioma_recuerdame}><br>
+                                <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>">
+                                <input type="hidden" name="op" value="login">
+                                <input type="submit" value="<{$block.idioma_entrar}>">
                                 <{$block.sslloginlink}></p>
                         </form>
                         <{$block.recuperarpass}>

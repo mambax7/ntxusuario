@@ -8,17 +8,17 @@ function funcion_usuario($options)
     [$resultado] = $xoopsDB->fetchRow($result);
     $config = explode("|", $resultado);
 
-    $online_handler =& xoops_gethandler('online');
-    mt_srand((double)microtime() * 1000000);
+    $onlineHandler = xoops_getHandler('online');
+    // mt_srand((double)microtime() * 1000000);
     $block = [];
     if (mt_rand(1, 100) < 11) {
-        $online_handler->gc(300);
+        $onlineHandler->gc(300);
     }
     if (is_object($xoopsUser)) {
-        $pm_handler =& xoops_gethandler('privmessage');
+        $pmHandler = xoops_getHandler('privmessage');
         $criteria   = new CriteriaCompo(new Criteria('read_msg', 0));
         $criteria->add(new Criteria('to_userid', $xoopsUser->getVar('uid')));
-        $nuevosmensajes                = $pm_handler->getCount($criteria);
+        $nuevosmensajes                = $pmHandler->getCount($criteria);
         $uid                           = $xoopsUser->getVar('uid');
         $uname                         = $xoopsUser->getVar('uname');
         $usuario                       = $xoopsUser->getVar('uname');
@@ -56,19 +56,19 @@ function funcion_usuario($options)
     }
 
     if (is_object($xoopsModule)) {
-        $online_handler->write($uid, $uname, time(), $xoopsModule->getVar('mid'), $_SERVER['REMOTE_ADDR']);
+        $onlineHandler->write($uid, $uname, time(), $xoopsModule->getVar('mid'), $_SERVER['REMOTE_ADDR']);
     } else {
-        $online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
+        $onlineHandler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
     }
-    $onlines        =& $online_handler->getAll();
-    $module_handler =& xoops_gethandler('module');
-    $modules        =& $module_handler->getList(new Criteria('isactive', 1));
-    if (false != $onlines) {
+    $onlines        =& $onlineHandler->getAll();
+    $moduleHandler = xoops_getHandler('module');
+    $modules        = $moduleHandler->getList(new Criteria('isactive', 1));
+    if (false !== $onlines) {
         $total       = count($onlines);
         $invitados   = 0;
         $miembros    = '';
         $invitadosip = '';
-        include XOOPS_ROOT_PATH . '/modules/ntxusuario/include/geoip.inc';
+        require XOOPS_ROOT_PATH . '/modules/ntxusuario/include/geoip.inc';
         $gi = geoip_open(XOOPS_ROOT_PATH . "/modules/ntxusuario/include/GeoIP.dat", GEOIP_STANDARD);
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
@@ -115,16 +115,16 @@ function funcion_usuario($options)
         }
         geoip_close($gi);
 
-        $member_handler        =& xoops_gethandler('member');
+        $memberHandler        = xoops_getHandler('member');
         $hari_ini              = formatTimestamp(time());
-        $usuarios_registrados  = $member_handler->getUserCount(new Criteria('level', 0, '>'));
-        $registrados_hoy       = $member_handler->getUserCount(new Criteria('user_regdate', mktime(0, 0, 0), '>='));
-        $registrados_desdeayer = $member_handler->getUserCount(new Criteria('user_regdate', (mktime(0, 0, 0) - (24 * 3600)), '>='));
+        $usuarios_registrados  = $memberHandler->getUserCount(new Criteria('level', 0, '>'));
+        $registrados_hoy       = $memberHandler->getUserCount(new Criteria('user_regdate', mktime(0, 0, 0), '>='));
+        $registrados_desdeayer = $memberHandler->getUserCount(new Criteria('user_regdate', (mktime(0, 0, 0) - (24 * 3600)), '>='));
         $criteria              = new CriteriaCompo(new Criteria('level', 0, '>'));
         $criteria->setOrder('DESC');
         $criteria->setSort('user_regdate');
         $criteria->setLimit($config[4]);
-        $nuevosmiemb       =& $member_handler->getUsers($criteria);
+        $nuevosmiemb       = $memberHandler->getUsers($criteria);
         $ultimo_registrado = $nuevosmiemb[0]->getVar('uname');
         $count             = count($nuevosmiemb);
         $nuevosmiembros    = '<b>' . _NUEVOSMIEMBROS . ':</b> ';

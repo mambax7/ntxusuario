@@ -1301,7 +1301,7 @@ function _get_org($gi, $ipnum)
 
 function geoip_org_by_addr($gi, $addr)
 {
-    if ($addr == null) {
+    if ($addr === null) {
         return 0;
     }
     $ipnum = ip2long($addr);
@@ -1342,7 +1342,7 @@ function _get_region($gi, $ipnum)
 
 function geoip_region_by_addr($gi, $addr)
 {
-    if ($addr == null) {
+    if ($addr === null) {
         return 0;
     }
     $ipnum = ip2long($addr);
